@@ -1,6 +1,6 @@
 # GutenShelf 📚
 
-![GutenShelf Logo](/client/public/logo.svg)
+
 
 GutenShelf is a free and open-source online book library designed to democratize access to knowledge. Browse classics, discover hidden gems, or build your own virtual bookshelf—without ads, paywalls, or bullshit.
 
