@@ -1,74 +1,39 @@
-# bhvr 🦫
+# GutenShelf 📚
 
-![cover](https://cdn.stevedylan.dev/ipfs/bafybeievx27ar5qfqyqyud7kemnb5n2p4rzt2matogi6qttwkpxonqhra4)
+![GutenShelf Logo](/client/public/logo.svg)
 
-A full-stack TypeScript monorepo starter with shared types, using Bun, Hono, Vite, and React
+GutenShelf is a free and open-source online book library designed to democratize access to knowledge. Browse classics, discover hidden gems, or build your own virtual bookshelf—without ads, paywalls, or bullshit.
 
-## Why bhvr?
+## Why GutenShelf?
 
-While there are plenty of existing app building stacks out there, many of them are either bloated, outdated, or have too much of a vendor lock-in. bhvr is built with the opinion that you should be able to deploy your client or server in any environment while also keeping type saftey.
+GutenShelf aims to provide a seamless and enjoyable experience for discovering and reading books online. It's built with a focus on user experience, performance, and accessibility, ensuring that everyone can dive into the world's greatest library without barriers.
 
 ## Features
 
-- **Full-Stack TypeScript**: End-to-end type safety between client and server
-- **Shared Types**: Common type definitions shared between client and server
-- **Monorepo Structure**: Organized as a workspaces-based monorepo
+- **Vast Library**: Access to a wide range of classics, bestsellers, and hidden gems.
+- **User-Friendly Interface**: Intuitive design for seamless browsing and reading.
+- **Free & Open Source**: No ads, no paywalls, completely open for contributions.
 - **Modern Stack**:
-  - [Bun](https://bun.sh) as the JavaScript runtime
-  - [Hono](https://hono.dev) as the backend framework
-  - [Vite](https://vitejs.dev) for frontend bundling
-  - [React](https://react.dev) for the frontend UI
+  - **React**: For a dynamic and responsive frontend.
+  - **Vite**: For fast development and optimized builds.
+  - **Bun**: As the JavaScript runtime.
+  - **Hono**: As the backend framework.
+- **End-to-End Type Safety**: Ensuring robust and error-free development.
 
 ## Project Structure
 
 ```
 .
-├── client/               # React frontend
-├── server/               # Hono backend
-├── shared/               # Shared TypeScript definitions
+├── client/               # React frontend for GutenShelf
+├── server/               # Hono backend for GutenShelf
+├── shared/               # Shared TypeScript definitions for GutenShelf
 │   └── src/types/        # Type definitions used by both client and server
 └── package.json          # Root package.json with workspaces
 ```
 
 ### Server
 
-bhvr uses Hono as a backend API for it's simplicity and massive ecosystem of plugins. If you have ever used Express then it might feel familiar. Declaring routes and returning data is easy.
-
-```
-server
-├── bun.lock
-├── package.json
-├── README.md
-├── src
-│   └── index.ts
-└── tsconfig.json
-```
-
-```typescript src/index.ts
-import { Hono } from 'hono'
-import { cors } from 'hono/cors'
-import type { ApiResponse } from 'shared/dist'
-
-const app = new Hono()
-
-app.use(cors())
-
-app.get('/', (c) => {
-  return c.text('Hello Hono!')
-})
-
-app.get('/hello', async (c) => {
-
-  const data: ApiResponse = {
-    message: "Hello BHVR!",
-    success: true
-  }
-
-  return c.json(data, { status: 200 })
-})
-
-export default app
-```
+GutenShelf uses Hono as a backend API for its simplicity and massive ecosystem of plugins. It handles book data, search queries, and other server-side operations.
 
 If you wanted to add a database to Hono you can do so with a multitude of Typescript libraries like [Supabase](https://supabase.com), or ORMs like [Drizzle](https://orm.drizzle.team/docs/get-started) or [Prisma](https://www.prisma.io/orm)
 
