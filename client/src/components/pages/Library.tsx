@@ -99,7 +99,7 @@ export default function Library() {
       setLoading(true);
       setError(null);
       try {
-        const res = await fetch(`http://localhost:3000/books?q=${debouncedTerm}`);
+        const res = await fetch(`https://gutendex.com/books?search=${debouncedTerm}`);
         if (!res.ok) throw new Error(`HTTP error: ${res.status}`);
         const data = await res.json();
         setBooks(data.results || []);
