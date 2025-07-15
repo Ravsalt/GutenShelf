@@ -94,7 +94,7 @@ export default function Component() {
                     <NavigationMenuLink
                       active={pathname === link.href}
                       href={link.href}
-                      className="text-muted-foreground hover:text-primary py-1.5 font-medium"
+                      className={`py-1.5 font-medium ${pathname === link.href ? 'text-primary' : 'text-muted-foreground hover:text-primary'}`}
                     >
                       {link.label}
                     </NavigationMenuLink>

@@ -73,5 +73,17 @@ module.exports = {
       },
     },
   },
+  animation: {
+        "accordion-down": "accordion-down 0.2s ease-out",
+        "accordion-up": "accordion-up 0.2s ease-out",
+      },
+    },
+  },
+  variants: {
+    extend: {
+      backgroundColor: ['active', 'data-[active]'],
+      textColor: ['active', 'data-[active]'],
+    },
+  },
   plugins: [require("tailwindcss-animate")],
 };
