@@ -1,0 +1,25 @@
+
+services:
+  - type: web
+    name: bookgen-server
+    env: node
+    rootDir: ./server
+    buildCommand: "bun install"
+    startCommand: "bun src/index.ts"
+    healthCheckPath: /
+    envVars:
+      - key: NODE_VERSION
+        value: 20.11.1
+      - key: PORT
+        value: 3000
+
+  - type: web
+    name: bookgen-client
+    env: static
+    rootDir: ./client
+    buildCommand: "bun install && bun run build"
+    staticPublishPath: ./dist
+    routes:
+      - type: rewrite
+        source: "/*"
+        destination: "/index.html"
