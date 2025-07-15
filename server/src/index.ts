@@ -88,6 +88,7 @@ app.get('/books', async (c) => {
 
 
 
+
 .get("/hello", async (c) => {
 	const data: ApiResponse = {
 		message: "Hello BHVR!",
@@ -95,6 +96,11 @@ app.get('/books', async (c) => {
 	};
 
 	return c.json(data, { status: 200 });
+})
+
+.post("/auth/login", async (c) => {
+    return c.json({ message: "Login system coming soon!" }, 501);
 });
+
 
 export default app;
