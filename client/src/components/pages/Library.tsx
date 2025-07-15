@@ -1,80 +1,8 @@
-import BookCard from "@/components/BookCard";
 import { useState, useEffect, useRef } from "react";
-import { Skeleton } from "@/components/ui/skeleton";
 import { Frown, BookOpen, Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
-import { motion, AnimatePresence } from "framer-motion";
-import { memo } from "react";
-
-const SkeletonCard = () => (
-  <div className="rounded-lg shadow overflow-hidden">
-    <Skeleton className="h-64 w-full" />
-    <div className="p-4 space-y-3">
-      <Skeleton className="h-6 w-3/4" />
-      <Skeleton className="h-4 w-1/2" />
-      <div className="grid grid-cols-2 gap-2 pt-2">
-        <Skeleton className="h-10 w-full" />
-        <Skeleton className="h-10 w-full" />
-      </div>
-    </div>
-  </div>
-);
-
-const LoadingState = () => (
-  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-    {Array.from({ length: 8 }).map((_, i) => (
-      <SkeletonCard key={i} />
-    ))}
-  </div>
-);
-
-const ErrorState = ({ error }: { error: string }) => (
-  <div className="text-center py-20 text-red-500">
-    <Frown className="w-12 h-12 mx-auto mb-4" />
-    <p className="text-xl font-semibold">Something broke 😵</p>
-    <p className="text-sm text-gray-500 mt-1">{error}</p>
-  </div>
-);
-
-const NoResultsState = ({ searchTerm }: { searchTerm: string }) => (
-  <div className="text-center py-20 text-gray-500">
-    <Search className="w-12 h-12 mx-auto mb-4" />
-    <p className="text-lg font-semibold">No results for "{searchTerm}"</p>
-    <p className="text-sm text-gray-400">Try a different keyword.</p>
-  </div>
-);
-
-const EmptyLibraryState = () => (
-  <div className="text-center py-20 text-gray-500">
-    <BookOpen className="w-12 h-12 mx-auto mb-4" />
-    <p className="text-lg font-semibold">Library is empty</p>
-    <p className="text-sm text-gray-400">Check back soon for book drops!</p>
-  </div>
-);
-
-const BookGrid = memo(({ books }: { books: any[] }) => (
-  <motion.div
-    layout
-    className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
-  >
-    <AnimatePresence>
-      {books.map((book) => (
-        <motion.div
-          key={book.id}
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.2 }}
-        >
-          <BookCard book={book} />
-        </motion.div>
-      ))}
-    </AnimatePresence>
-  </motion.div>
-));
 
 export default function Library() {
-  const [books, setBooks] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState("");
@@ -94,22 +22,8 @@ export default function Library() {
 
   // 📚 Fetch Books
   useEffect(() => {
-    const fetchBooks = async () => {
-      setLoading(true);
-      setError(null);
-      try {
-        const res = await fetch(`https://gutendex.com/books?search=${debouncedTerm}`);
-        if (!res.ok) throw new Error(`HTTP error: ${res.status}`);
-        const data = await res.json();
-        setBooks(data.results || []);
-      } catch (err) {
-        console.error(err);
-        setError("Could not fetch books. Try again later.");
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchBooks();
+    setLoading(false);
+    setError("Book queries have been removed. Book data is no longer available.");
   }, [debouncedTerm]);
 
   return (
@@ -128,15 +42,19 @@ export default function Library() {
       </div>
 
       {loading ? (
-        <LoadingState />
+        <p>Loading...</p>
       ) : error ? (
-        <ErrorState error={error} />
-      ) : books.length > 0 ? (
-        <BookGrid books={books} />
-      ) : searchTerm ? (
-        <NoResultsState searchTerm={searchTerm} />
+        <div className="text-center py-20 text-red-500">
+          <Frown className="w-12 h-12 mx-auto mb-4" />
+          <p className="text-xl font-semibold">Something broke 😵</p>
+          <p className="text-sm text-gray-500 mt-1">{error}</p>
+        </div>
       ) : (
-        <EmptyLibraryState />
+        <div className="text-center py-20 text-gray-500">
+          <BookOpen className="w-12 h-12 mx-auto mb-4" />
+          <p className="text-lg font-semibold">Book queries have been removed.</p>
+          <p className="text-sm text-gray-400">Book data is no longer available.</p>
+        </div>
       )}
     </div>
   );

@@ -23,7 +23,7 @@ GutenShelf is organized as a monorepo with the following key directories:
 
 ### Server
 
-GutenShelf uses Hono as its backend API, handling book data and search queries.
+GutenShelf uses Hono as its backend API. The next major update will introduce login authentication. Note that book queries have been removed from the backend.
 
 ### Client
 
