@@ -1,4 +1,3 @@
-
 services:
   - type: web
     name: bookgen-server
@@ -10,12 +9,9 @@ services:
     envVars:
       - key: NODE_VERSION
         value: 20.11.1
-      - key: PORT
-        value: 3000
 
-  - type: web
+  - type: static_site
     name: bookgen-client
-    env: static
     rootDir: ./client
     buildCommand: "bun install && bun run build"
     staticPublishPath: ./dist
