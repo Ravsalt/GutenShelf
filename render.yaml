@@ -1,18 +1,16 @@
 services:
   - type: web
     name: gutenshelf-api
-    env: node
+    plan: free
     rootDir: ./server
     buildCommand: "bun install"
     startCommand: "bun src/index.ts"
     healthCheckPath: /
-    envVars:
-      - key: NODE_VERSION
-        value: 20.11.1
 
   - type: web
     name: gutenshelf
     runtime: static
+    plan: free
     rootDir: ./client
     buildCommand: "bun install && bun run build"
     staticPublishPath: ./dist
