@@ -10,8 +10,9 @@ services:
       - key: NODE_VERSION
         value: 20.11.1
 
-  - type: static_site
+  - type: web
     name: gutenshelf
+    runtime: static
     rootDir: ./client
     buildCommand: "bun install && bun run build"
     staticPublishPath: ./dist
