@@ -1,5 +1,5 @@
 import BookCard from "@/components/BookCard";
-import { Book } from "../../../../shared/src/types";
+import { Book } from "@shared/types";
 import { useState, useEffect, useRef } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Frown, BookOpen, Search } from "lucide-react";
