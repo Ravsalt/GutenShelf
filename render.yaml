@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: bookgen-server
+    name: gutenshelf-api
     env: node
     rootDir: ./server
     buildCommand: "bun install"
@@ -11,7 +11,7 @@ services:
         value: 20.11.1
 
   - type: static_site
-    name: bookgen-client
+    name: gutenshelf
     rootDir: ./client
     buildCommand: "bun install && bun run build"
     staticPublishPath: ./dist
