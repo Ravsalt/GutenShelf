@@ -1,13 +1,5 @@
 services:
   - type: web
-    name: gutenshelf-api
-    plan: free
-    rootDir: ./server
-    buildCommand: "bun install"
-    startCommand: "bun src/index.ts"
-    healthCheckPath: /
-
-  - type: web
     name: gutenshelf
     runtime: static
     plan: free
