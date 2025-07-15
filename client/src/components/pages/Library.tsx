@@ -1,5 +1,4 @@
 import BookCard from "@/components/BookCard";
-import { Book } from "@shared/types";
 import { useState, useEffect, useRef } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Frown, BookOpen, Search } from "lucide-react";
@@ -53,7 +52,7 @@ const EmptyLibraryState = () => (
   </div>
 );
 
-const BookGrid = memo(({ books }: { books: Book[] }) => (
+const BookGrid = memo(({ books }: { books: any[] }) => (
   <motion.div
     layout
     className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
@@ -75,7 +74,7 @@ const BookGrid = memo(({ books }: { books: Book[] }) => (
 ));
 
 export default function Library() {
-  const [books, setBooks] = useState<Book[]>([]);
+  const [books, setBooks] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState("");

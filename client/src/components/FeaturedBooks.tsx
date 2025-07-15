@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Book } from "@shared/types";
 import { Button } from "@/components/ui/button";
 import BookCard from "@/components/BookCard";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -18,7 +17,7 @@ const SkeletonCard = () => (
 );
 
 export default function FeaturedBooks() {
-  const [books, setBooks] = useState<Book[]>([]);
+  const [books, setBooks] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
